@@ -1,8 +1,9 @@
 'use client';
 
-import { useAuthStore } from '@/store/auth';
+import { useUser } from '@clerk/nextjs';
 import Link from 'next/link';
 import { Package, MessageCircle, Settings, Plus } from 'lucide-react';
+import { redirect } from 'next/navigation';
 
 // Mock orders
 const MOCK_ORDERS = [
@@ -20,8 +21,16 @@ const STATUS_COLORS: Record<string, string> = {
 };
 
 export default function DashboardPage() {
-  const { user } = useAuthStore();
-  const isBrand = user?.role === 'brand';
+  const { user, isLoaded } = useUser();
+
+  if (!isLoaded) return <div className="min-h-screen flex items-center justify-center">Loading...</div>;
+  
+  if (!user?.unsafeMetadata?.role) {
+    redirect('/select-role');
+  }
+
+  const role = user.unsafeMetadata.role as string;
+  const isBrand = role === 'brand';
 
   return (
     <div className="min-h-screen bg-gray-50">
@@ -46,12 +55,12 @@ export default function DashboardPage() {
       <main className="ml-64 p-8">
         <div className="flex justify-between items-center mb-8">
           <div>
-            <h1 className="text-2xl font-bold">Welcome, {user?.fullName}</h1>
-            <p className="text-gray-500">{isBrand ? 'Brand Dashboard' : 'Influencer Dashboard'}</p>
+            <h1 className="text-2xl font-bold">Welcome, {user.firstName || 'there'}</h1>
+            <p className="text-gray-500">{isBrand ? 'Brand Dashboard' : 'Creator Dashboard'}</p>
           </div>
           {isBrand ? (
             <Link href="/influencers" className="flex items-center gap-2 px-4 py-2 bg-primary text-white rounded-lg">
-              <Plus size={18} /> Find Influencers
+              <Plus size={18} /> Find Creators
             </Link>
           ) : (
             <Link href="/dashboard/services" className="flex items-center gap-2 px-4 py-2 bg-primary text-white rounded-lg">
@@ -89,7 +98,7 @@ export default function DashboardPage() {
             <thead className="bg-gray-50">
               <tr>
                 <th className="text-left px-6 py-3 text-sm font-medium text-gray-500">Order</th>
-                <th className="text-left px-6 py-3 text-sm font-medium text-gray-500">{isBrand ? 'Influencer' : 'Brand'}</th>
+                <th className="text-left px-6 py-3 text-sm font-medium text-gray-500">{isBrand ? 'Creator' : 'Brand'}</th>
                 <th className="text-left px-6 py-3 text-sm font-medium text-gray-500">Service</th>
                 <th className="text-left px-6 py-3 text-sm font-medium text-gray-500">Status</th>
                 <th className="text-left px-6 py-3 text-sm font-medium text-gray-500">Amount</th>
