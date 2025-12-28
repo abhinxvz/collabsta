@@ -5,7 +5,7 @@ CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
 
 -- ENUMS
 CREATE TYPE user_role AS ENUM ('brand', 'influencer', 'admin');
-CREATE TYPE platform_type AS ENUM ('instagram', 'youtube', 'tiktok', 'moj', 'sharechat', 'josh');
+CREATE TYPE platform_type AS ENUM ('instagram', 'youtube', 'x');
 CREATE TYPE order_status AS ENUM ('pending', 'accepted', 'in_progress', 'delivered', 'revision', 'completed', 'cancelled', 'disputed');
 CREATE TYPE content_type AS ENUM ('post', 'reel', 'story', 'video', 'ugc', 'shorts');
 

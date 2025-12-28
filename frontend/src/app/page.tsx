@@ -22,7 +22,7 @@ export default function Home() {
           Find Indian Influencers <br /> for Your Brand
         </h1>
         <p className="text-xl text-gray-600 mb-8 max-w-2xl mx-auto">
-          Connect with top creators on Instagram, YouTube, Moj, ShareChat and more. 
+          Connect with top creators on Instagram, YouTube, and X. 
           Pay in INR, work with verified influencers.
         </p>
         
@@ -46,7 +46,7 @@ export default function Home() {
       <section className="px-6 py-16">
         <h2 className="text-2xl font-bold text-center mb-8">Platforms We Support</h2>
         <div className="flex justify-center gap-8 flex-wrap">
-          {['Instagram', 'YouTube', 'TikTok', 'Moj', 'ShareChat', 'Josh'].map((platform) => (
+          {['Instagram', 'YouTube', 'X'].map((platform) => (
             <div key={platform} className="px-6 py-3 bg-gray-100 rounded-full font-medium">
               {platform}
             </div>

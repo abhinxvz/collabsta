@@ -4,7 +4,7 @@ import { useState } from 'react';
 import Link from 'next/link';
 import { Filter, Star } from 'lucide-react';
 
-const PLATFORMS = ['All', 'Instagram', 'YouTube', 'TikTok', 'Moj', 'ShareChat'];
+const PLATFORMS = ['All', 'Instagram', 'YouTube', 'X'];
 const CATEGORIES = ['All', 'Fashion', 'Beauty', 'Tech', 'Food', 'Fitness', 'Travel', 'Gaming'];
 
 // Mock data - will be replaced with API
