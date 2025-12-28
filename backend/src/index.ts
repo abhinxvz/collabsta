@@ -6,6 +6,8 @@ import { connectRedis } from './config/database';
 import authRoutes from './routes/auth.routes';
 import influencerRoutes from './routes/influencer.routes';
 import orderRoutes from './routes/order.routes';
+import serviceRoutes from './routes/service.routes';
+import messageRoutes from './routes/message.routes';
 
 dotenv.config();
 
@@ -21,6 +23,8 @@ app.use(express.json());
 app.use('/api/auth', authRoutes);
 app.use('/api/influencers', influencerRoutes);
 app.use('/api/orders', orderRoutes);
+app.use('/api/services', serviceRoutes);
+app.use('/api/messages', messageRoutes);
 
 // Health check
 app.get('/health', (_, res) => res.json({ status: 'ok' }));
